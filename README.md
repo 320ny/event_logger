@@ -47,7 +47,9 @@ end
 This will later allow us to run analytics on these events. If we want to know the number of failed 
 signups we just need to ask
 
-    EventLog.where(:event => 'user_signup_failed').count
+```ruby
+EventLog.where(:event => 'user_signup_failed').count
+```
 
 We also have full acess to the objects within the event
 

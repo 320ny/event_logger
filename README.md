@@ -13,13 +13,49 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
+Generate the event_logs table migration
+    
+    $ rake g event_logger
 
-    $ gem install event_logger
+Run the migration
+
+    $ rake db:migrate
 
 ## Usage
 
-TODO: Write usage instructions here
+All controllers have access to the `log_event` method. This method takes two arguments
+
+1. event (string)
+2. object (ruby object)
+
+Anytime you wish to track an event use this method. For example if we want to track failed user
+signups we would do this
+
+    ```ruby
+    class RegistrationsController
+      def create
+        ...
+        log_event('user_signup_failed', current_user)
+        ...
+      end
+    end
+    ```
+
+This will later allow us to run analytics on these events. If we want to know the number of failed 
+signups we just need to ask
+
+    ```ruby
+    EventLog.where(:event => 'user_signup_failed').count
+    ```
+
+We also have full acess to the objects within the event
+
+    ```ruby
+    event = EventLog.where(:event => 'user_signup_failed').last
+    event.object
+    => #<User first_name: "Ryan", last_name: "Howard">
+    event.object.first_name
+    => "Ryan"
 
 ## Contributing
 

@@ -31,13 +31,15 @@ All controllers have access to the `log_event` method. This method takes two arg
 Anytime you wish to track an event use this method. For example if we want to track failed user
 signups we would do this
 
-    class RegistrationsController
-      def create
-        ...
-        log_event('user_signup_failed', current_user)
-        ...
-      end
-    end
+```ruby
+class RegistrationsController < ApplicationController
+  def create
+    ...
+    log_event('user_signup_failed', current_user)
+    ...
+  end
+end
+```
 
 This will later allow us to run analytics on these events. If we want to know the number of failed 
 signups we just need to ask
@@ -46,11 +48,13 @@ signups we just need to ask
 
 We also have full acess to the objects within the event
 
-    event = EventLog.where(:event => 'user_signup_failed').last
-    event.object
-    => #<User first_name: "Ryan", last_name: "Howard">
-    event.object.first_name
-    => "Ryan"
+```ruby
+event = EventLog.where(:event => 'user_signup_failed').last
+event.object
+=> #<User first_name: "Ryan", last_name: "Howard">
+event.object.first_name
+=> "Ryan"
+```
 
 ## Contributing
 

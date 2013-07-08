@@ -1,4 +1,5 @@
 # EventLogger
+[![Build Status](https://travis-ci.org/320ny/event_logger.png?branch=master)](https://travis-ci.org/320ny/event_logger)
 
 TODO: Write a gem description
 

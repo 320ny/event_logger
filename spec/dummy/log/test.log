@@ -37,3 +37,23 @@ Migrating to CreateUsers (20130708222513)
   [1m[35m (0.1ms)[0m  begin transaction
   [1m[36mSQL (4.4ms)[0m  [1mINSERT INTO "users" ("age", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)[0m  [["age", 30], ["created_at", Mon, 08 Jul 2013 22:52:48 UTC +00:00], ["name", "Frank Awesome"], ["updated_at", Mon, 08 Jul 2013 22:52:48 UTC +00:00]]
   [1m[35m (2.6ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateEventLogsTable (20130709001256)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (23.9ms)[0m  [1mCREATE TABLE "event_logs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "event" varchar(255), "object" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (24.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20130709001256"]]
+  [1m[36m (46.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "event_logs"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (69.6ms)[0m  INSERT INTO "event_logs" ("created_at", "event", "object", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Tue, 09 Jul 2013 00:13:36 UTC +00:00], ["event", "user:registration:failed"], ["object", "{'somekey': 'somevalue'}"], ["updated_at", Tue, 09 Jul 2013 00:13:36 UTC +00:00]]
+  [1m[36m (8.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "event_logs"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (10.0ms)[0m  INSERT INTO "users" ("age", "created_at", "name", "updated_at") VALUES (?, ?, ?, ?)  [["age", 30], ["created_at", Tue, 09 Jul 2013 00:13:36 UTC +00:00], ["name", "Frank Awesome"], ["updated_at", Tue, 09 Jul 2013 00:13:36 UTC +00:00]]
+  [1m[36m (8.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "event_logs" ("created_at", "event", "object", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Tue, 09 Jul 2013 00:13:36 UTC +00:00], ["event", "user_registration_success"], ["object", #<User id: 9, name: "Frank Awesome", age: 30, created_at: "2013-07-09 00:13:36", updated_at: "2013-07-09 00:13:36">], ["updated_at", Tue, 09 Jul 2013 00:13:36 UTC +00:00]]
+  [1m[35m (2.8ms)[0m  commit transaction
+  [1m[36mEventLog Load (0.2ms)[0m  [1mSELECT "event_logs".* FROM "event_logs" WHERE "event_logs"."id" = ? LIMIT 1[0m  [["id", 2]]

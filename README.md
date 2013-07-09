@@ -1,4 +1,4 @@
-# EventLogger
+# EventLogger::EventLogger
 [![Build Status](https://travis-ci.org/320ny/event_logger.png?branch=master)](https://travis-ci.org/320ny/event_logger)
 
 Event Logger allows you to log events from anywhere in you Rails appliaction.
@@ -48,13 +48,13 @@ This will later allow us to run analytics on these events. If we want to know th
 signups we just need to ask
 
 ```ruby
-EventLog.where(:event => 'user_signup_failed').count
+EventLogger::EventLog.where(:event => 'user_signup_failed').count
 ```
 
 We also have full acess to the objects within the event
 
 ```ruby
-event = EventLog.where(:event => 'user_signup_failed').last
+event = EventLogger::EventLog.where(:event => 'user_signup_failed').last
 event.object
 => #<User first_name: "Ryan", last_name: "Howard">
 event.object.first_name

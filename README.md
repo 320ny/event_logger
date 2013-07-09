@@ -1,7 +1,7 @@
-# EventLogger::EventLogger
+# EventLogger
 [![Build Status](https://travis-ci.org/320ny/event_logger.png?branch=master)](https://travis-ci.org/320ny/event_logger)
 
-Event Logger allows you to log events from anywhere in you Rails appliaction.
+EventLogger allows you to log events from anywhere in you Rails appliaction.
 Once logged these events can be used to run statistics on the types of events logged.
 Each event can store a seralized ruby object so you have access to detailed information
 regarding your event.

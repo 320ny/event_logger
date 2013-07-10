@@ -1,0 +1,4 @@
+== 0.1.0 (2013-07-08)
+* New ActionController method log_event
+* Generator `rails g event_logger` to create event_logs table
+* New ActiveRecord Model EventLogger::EventLog

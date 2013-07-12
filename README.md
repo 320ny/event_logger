@@ -19,7 +19,7 @@ And then execute:
 
 Generate the event_logs table migration
     
-    $ rake g event_logger
+    $ rails g event_logger
 
 Run the migration
 

@@ -2,9 +2,9 @@
 [![Build Status](https://travis-ci.org/320ny/event_logger.png?branch=master)](https://travis-ci.org/320ny/event_logger)
 [![Code Climate](https://codeclimate.com/github/320ny/event_logger.png)](https://codeclimate.com/github/320ny/event_logger)
 
-EventLogger allows you to log events from anywhere in you Rails appliaction.
-Once logged these events can be used to run statistics on the types of events logged.
-Each event can store a seralized ruby object so you have access to detailed information
+EventLogger allows you to log events from anywhere in your Rails application.
+Once logged, these events can be used to run statistics on the types of events logged.
+Each event can store a serialized ruby object so you have access to detailed information
 regarding your event.
 
 ## Installation
@@ -32,8 +32,7 @@ All controllers have access to the `log_event` method. This method takes two arg
 1. event (string)
 2. object (ruby object)
 
-Anytime you wish to track an event use this method. For example if we want to track failed user
-signups we would do this
+Anytime you wish to track an event use this method. For example, if we want to track failed user signups we would do this:
 
 ```ruby
 class RegistrationsController < ApplicationController
@@ -45,14 +44,13 @@ class RegistrationsController < ApplicationController
 end
 ```
 
-This will later allow us to run analytics on these events. If we want to know the number of failed 
-signups we just need to ask
+This will later allow us to run analytics on these events. If we want to know the number of failed signups we just need to ask:
 
 ```ruby
 EventLogger::EventLog.where(:event => 'user_signup_failed').count
 ```
 
-We also have full acess to the objects within the event
+We also have full access to the objects within the event:
 
 ```ruby
 event = EventLogger::EventLog.where(:event => 'user_signup_failed').last
